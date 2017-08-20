@@ -135,7 +135,7 @@ class AdminPostsController extends Controller
         $post->photo->delete();
         $post->delete();
 
-        return redirect('/admin/posts');g
+        return redirect('/admin/posts');
 
     }
 }
