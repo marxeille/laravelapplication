@@ -21,10 +21,19 @@ Route::get('/home', 'HomeController@index');
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::group(['middleware'=>'active'],function (){
 
-Route::get('admin',function (){
-    return view('admin.index');
+    Route::get('/home', 'HomeController@index');
+
+    Route::get('admin',function (){
+        return view('admin.index');
+    });
+    Route::group(['middleware'=>'admin'],function (){
+
+        Route::resource('/admin/users','AdminUsersController');
+        Route::resource('/admin/posts','AdminPostsController');
+
+    });
+
 });
 
-Route::resource('/admin/users','AdminUsersController');

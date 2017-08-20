@@ -4,6 +4,7 @@
     <div class="col-md-3">
         <img src="{{$user->photo?$user->photo->path:'/images/noavatar.jpg'}}" alt="" class="img-responsive img-rounded">
     </div>
+
     @if(count($errors)>0)
         <div class="alert alert-danger">
             @foreach($errors->all() as $err)
@@ -41,14 +42,16 @@
     </div>
 
     <div class="form-group">
-        {!! Form::submit('Submit',['class'=>'btn btn-primary']) !!}
+        {!! Form::submit('Submit',['class'=>'btn btn-primary col-sm-6']) !!}
     </div>
 
         {!! Form::close() !!}
-    <div class="form-group">
+
+
         {!! Form::model($user,['method'=>'DELETE','action'=>['AdminUsersController@destroy',$user->id]]) !!}
-        {!! Form::submit('Delete',['class'=>'btn btn-danger'])  !!}
+        {!! Form::submit('Delete',['class'=>'btn btn-danger col-sm-6'])  !!}
         {!! Form::close() !!}
-    </div>
+
+
     </div>
 @endsection
