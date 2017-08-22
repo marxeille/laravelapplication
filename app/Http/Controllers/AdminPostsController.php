@@ -115,7 +115,7 @@ class AdminPostsController extends Controller
             $input['photo_id'] = $photo->id;
         }
 
-        $post->update($input);
+        $user->posts()->whereId($id)->first()->update($input);
 
         return redirect('/admin/posts');
 
@@ -131,11 +131,14 @@ class AdminPostsController extends Controller
     {
         //
         $post = Post::findorFail($id);
-        unlink(public_path() . $post->photo->path);
-        $post->photo->delete();
-        $post->delete();
+        if($post->photo){
+            unlink(public_path() . $post->photo->path);
+            $post->photo->delete();
+        }
 
-        return redirect('/admin/posts');g
+        Auth::user()->posts()->whereId($id)->first()->delete();
+
+        return redirect('/admin/posts');
 
     }
 }

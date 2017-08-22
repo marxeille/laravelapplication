@@ -19,7 +19,8 @@ class CreatePostsTable extends Migration
             $table->integer('category_id')->unsigned()->index();
             $table->string('title');
             $table->text('body');
-            $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

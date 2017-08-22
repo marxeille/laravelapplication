@@ -17,7 +17,7 @@
             <th>Photos</th>
             <th>User</th>
             <th>Created at</th>
-            <th>Created at</th>
+            <th>Updated at</th>
             <th><i class="fa fa-edit fa-fw"></th>
         </tr>
         </thead>
@@ -26,7 +26,7 @@
             <tr>
                 <td>{{$post->id}}</td>
                 <td>{{$post->title}}</td>
-                <td>{{$post->body}}</td>
+                <td>{{str_limit($post->body,2)}}</td>
                 <td>{{$post->category ? $post->category->name : 'Belong to nothing'}}</td>
                 <td><img height="100px" width="100px" src="{{$post->photo ? $post->photo->path :'No user photo'}}"></td>
                 <td>{{$post->user->name}}</td>
