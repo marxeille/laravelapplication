@@ -32,11 +32,12 @@ Route::group(['middleware'=>'active'],function (){
 
         Route::resource('/admin/users','AdminUsersController');
         Route::resource('/admin/posts','AdminPostsController');
+
         Route::resource('/admin/categories','AdminCategoriesController');
         Route::resource('/admin/media','AdminMediaController');
-        Route::resource('/admin/comments','PostCommentsController');
 
-        Route::resource('/admin/comments/replies','CommentRepliesController');
+        Route::resource('/admin/comments','AdminCommentsController');
+        Route::resource('/admin/comment/replies','CommentRepliesController');
 
     });
 
