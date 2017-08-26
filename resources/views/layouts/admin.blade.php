@@ -14,7 +14,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
     <link href="{{asset('css/libs.css')}}" rel="stylesheet">
-
+@yield('style')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -78,7 +78,7 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> Users<span class="fa arrow"></span></a>
@@ -112,10 +112,10 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> Categories<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="panels-wells.html">All Categories</a>
+                                <a href="{{route('admin.categories.index')}}">All Categories</a>
                             </li>
                             <li>
-                                <a href="buttons.html">Create Category</a>
+                                <a href="{{route('admin.categories.create')}}">Create Category</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -125,23 +125,20 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> Media<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="panels-wells.html">All Media</a>
+                                <a href="{{route('admin.media.index')}}">All Media</a>
                             </li>
                             <li>
-                                <a href="buttons.html">Create Media</a>
+                                <a href="{{route('admin.media.create')}}">Upload Media</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
 
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Comments<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="flot.html">Flot Charts</a>
-                            </li>
-                            <li>
-                                <a href="morris.html">Morris.js Charts</a>
+                                <a href="{{route('admin.comments.index')}}">All Comments</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -245,6 +242,7 @@
 
 <!-- jQuery -->
 <script src="{{asset('js/libs.js')}}"></script>
+@yield('script')
 
 </body>
 

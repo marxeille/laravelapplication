@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -40,7 +41,7 @@ class User extends Authenticatable
     public function setPasswordAttribute($password)
     {
         if(!empty($password)){
-            return $this->attributes['password'] = bcrypt($password);
+          return  $this->attributes['password'] = Hash::needsRehash($password) ? Hash::make($password) : $password;
         }
     }
 
@@ -55,7 +56,7 @@ class User extends Authenticatable
     }
 
     public function isActive(){
-        if($this->is_active == 1){
+        if($this->is_active === 1){
             return true;
         }else{
             return false;
