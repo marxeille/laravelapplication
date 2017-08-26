@@ -75,7 +75,7 @@ class AdminPostsController extends Controller
     public function show($id)
     {
         //
-        $post = Post::fndorFail($id);
+        $post = Post::findorFail($id);
         return view('admin.posts.show',compact('post'));
     }
 
@@ -140,5 +140,10 @@ class AdminPostsController extends Controller
 
         return redirect('/admin/posts');
 
+    }
+
+    public function post($id){
+        $post = Post::findorFail($id);
+        return view('post',compact('post'));
     }
 }

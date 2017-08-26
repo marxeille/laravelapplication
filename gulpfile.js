@@ -19,11 +19,11 @@ elixir(function(mix) {
             'blog-post.css',
             'bootstrap.css',
             'bootstrap.min.css',
-            'font-awesome.css',
             'metisMenu.css',
             'sb-admin-2.css',
             'styles.css',
-            'timeline.css'
+            'timeline.css',
+            'font-awesome.css'
 
         ], './public/css/libs.css')
 
