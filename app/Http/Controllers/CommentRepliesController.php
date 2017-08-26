@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\CommentReply;
 use Illuminate\Http\Request;
 
@@ -48,7 +49,7 @@ class CommentRepliesController extends Controller
             'comment_id' => $request->comment_id,
             'author' => $user->name,
             'email' => $user->email,
-            'photo' => $user->photo->path,
+            'photo' => $user->photo?$user->photo->path:'noavatar.jpg',
             'body' => $request->body
         ];
 
@@ -66,6 +67,10 @@ class CommentRepliesController extends Controller
     public function show($id)
     {
         //
+        $comment = Comment::find($id);
+        $replies = $comment->replies()->get();
+
+        return view('admin.comments.replies.show',compact('comment','replies'));
     }
 
     /**
@@ -89,6 +94,10 @@ class CommentRepliesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $reply= CommentReply::findorFail($id);
+        $reply->update($request->all());
+
+        return redirect('admin/comments');
     }
 
     /**
@@ -100,6 +109,8 @@ class CommentRepliesController extends Controller
     public function destroy($id)
     {
         //
+        CommentReply::findorFail($id)->delete();
+        return redirect('admin/comments');
     }
 
 

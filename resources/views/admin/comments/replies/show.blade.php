@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 @section('content')
-    <h1>Comments of the post: {{$post->title}}</h1>
+    <h1>Replies of the comment: {{$comment->id}}</h1>
 
-    @if(count($comments) > 0)
+    @if(count($replies) > 0)
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -10,7 +10,6 @@
                 <th>Post</th>
                 <th>User</th>
                 <th>Body</th>
-                <th>Replies</th>
                 <th>Approve</th>
                 <th>Delete</th>
                 <th>Created at</th>
@@ -18,16 +17,15 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($comments as $comment)
+            @foreach($replies as $reply)
                 <tr>
-                    <td>{{$comment->id}}</td>
+                    <td>{{$reply->id}}</td>
                     <td><a href="{{route('home.post',$comment->post_id)}}">{{$comment->post->title}}</a> </td>
-                    <td>{{$comment->author}}</td>
-                    <td>{{str_limit($comment->body,2)}}</td>
-                    <td><a href="{{route('admin.comment.replies.show',$comment->id)}}">View replies</a></td>
+                    <td>{{$reply->author}}</td>
+                    <td>{{str_limit($reply->body,2)}}</td>
                     <td>
-                        @if($comment->is_active == 1)
-                            {!! Form::open(['method'=>'PATCH','action'=>['PostCommentsController@update',$comment->id],'files'=>true]) !!}
+                        @if($reply->is_active == 1)
+                            {!! Form::open(['method'=>'PATCH','action'=>['CommentRepliesController@update',$reply->id],'files'=>true]) !!}
 
                             <input name="is_active" type="hidden" value="0" id="comment_id">
 
@@ -38,7 +36,7 @@
 
                             {!! Form::close() !!}
                         @else
-                            {!! Form::open(['method'=>'PATCH','action'=>['PostCommentsController@update',$comment->id],'files'=>true]) !!}
+                            {!! Form::open(['method'=>'PATCH','action'=>['CommentRepliesController@update',$reply->id],'files'=>true]) !!}
 
                             <input name="is_active" type="hidden" value="1" id="comment_id">
 
@@ -56,13 +54,13 @@
 
                     <td>
 
-                        {!! Form::open(['method'=>'DELETE','action'=>['PostCommentsController@destroy',$comment->id]]) !!}
+                        {!! Form::open(['method'=>'DELETE','action'=>['CommentRepliesController@destroy',$reply->id]]) !!}
                         {!! Form::submit('Delete',['class'=>'btn btn-danger col-sm-6'])  !!}
                         {!! Form::close() !!}
 
                     </td>
-                    <td>{{$comment->created_at->diffforHumans()}}</td>
-                    <td>{{$comment->updated_at->diffforHumans()}}</td>
+                    <td>{{$reply->created_at->diffforHumans()}}</td>
+                    <td>{{$reply->updated_at->diffforHumans()}}</td>
                 </tr>
             @endforeach
             </tbody>

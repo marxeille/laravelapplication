@@ -10,6 +10,7 @@
         <th>Post</th>
         <th>User</th>
         <th>Body</th>
+        <th>Replies</th>
         <th>Approve</th>
         <th>Delete</th>
         <th>Created at</th>
@@ -23,6 +24,7 @@
         <td><a href="{{route('home.post',$comment->post_id)}}">{{$comment->post->title}}</a> </td>
         <td>{{$comment->author}}</td>
         <td>{{str_limit($comment->body,2)}}</td>
+        <td><a href="{{route('admin.comment.replies.show',$comment->id)}}">View replies</a></td>
         <td>
             @if($comment->is_active == 1)
                 {!! Form::open(['method'=>'PATCH','action'=>['PostCommentsController@update',$comment->id],'files'=>true]) !!}
