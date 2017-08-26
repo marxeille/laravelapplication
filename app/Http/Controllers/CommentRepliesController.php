@@ -97,7 +97,7 @@ class CommentRepliesController extends Controller
         $reply= CommentReply::findorFail($id);
         $reply->update($request->all());
 
-        return redirect('admin/comments');
+        return redirect()->back();
     }
 
     /**
@@ -110,7 +110,7 @@ class CommentRepliesController extends Controller
     {
         //
         CommentReply::findorFail($id)->delete();
-        return redirect('admin/comments');
+        return redirect()->back();
     }
 
 
